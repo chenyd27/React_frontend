@@ -1,0 +1,18 @@
+.container{
+    margin-top: 10%;
+}
+
+.info-box-second-line{
+    display: flex;
+    align-items: center;
+}
+
+.email-reminder-box{
+    margin-left: 25%;
+    display: flex;
+    align-items: center;
+}
+
+.info-box-submit{
+    margin-top: 2%;
+}

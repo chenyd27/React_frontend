@@ -8,13 +8,16 @@ import {
   Routes,
   Outlet
 } from 'react-router-dom';
+import TodoList from './pages/todoList/TodoList';
 
 // 导航栏出口
 function Layout() : any{
-  return (<div>
+  return (<div style={{display : 'flex'}}>
       <Navbar/>
       {/** 二级路由出口 */}
-      <Outlet/>
+      <div style={{marginLeft : '20px'}}>
+        <Outlet/>
+      </div>
   </div>)
 }
 
@@ -25,7 +28,7 @@ function App() {
           <Routes>
               <Route path='/' element={<Layout/>}>
                 <Route index element={<Navigate to='/todolist'/>}></Route>
-                <Route path='todolist'></Route>
+                <Route path='todolist' element={<TodoList/>}></Route>
                 <Route path='bill'></Route>
                 <Route path='journal'></Route>
               </Route>

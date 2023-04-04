@@ -50,13 +50,14 @@ const items: MenuItem[] = [
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
-  const [selected, setSelected] = useState("1");
+  const selectValue : string = localStorage.getItem('selectedKey') !== null ? localStorage.getItem('selectedKey') as string : "1";
+  const [selected, setSelected] = useState(selectValue);
   useEffect(()=>{
     const storedValue = localStorage.getItem('selectedKey');
     if (storedValue && selected !== storedValue) {
-       navigate('/todolist');
+       setSelected(storedValue);
     }
-  },[])
+  },[selected])
   function navi(e : MenuItem) : void {
     if(e != null){
       if(typeof e.key === "string" ){
@@ -66,7 +67,6 @@ const Navbar: React.FC = () => {
     }
   }
   function transform(e : MenuItem) : void {
-    console.log(e);
     if(e !== null){
       if(e.key === '1') navigate('/todolist');
       else if(e.key === '2') navigate('/bill');
@@ -78,7 +78,7 @@ const Navbar: React.FC = () => {
     <div className='menu-box'>
       <div style={{width : 256}}>
       <Menu
-        defaultSelectedKeys={[selected]}
+        selectedKeys={[selected]}
         selectable={true}
         mode="inline"
         theme="light"
