@@ -1,24 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Navbar from './components/Navbar/Navbar';
+import './App.css'
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Route,
+  Routes,
+  Outlet
+} from 'react-router-dom';
+
+// 导航栏出口
+function Layout() : any{
+  return (<div>
+      <Navbar/>
+      {/** 二级路由出口 */}
+      <Outlet/>
+  </div>)
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+        <Router>
+          <Routes>
+              <Route path='/' element={<Layout/>}>
+                <Route index element={<Navigate to='/todolist'/>}></Route>
+                <Route path='todolist'></Route>
+                <Route path='bill'></Route>
+                <Route path='journal'></Route>
+              </Route>
+          </Routes>
+        </Router>
     </div>
   );
 }
