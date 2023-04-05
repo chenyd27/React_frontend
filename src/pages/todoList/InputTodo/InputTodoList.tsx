@@ -2,11 +2,17 @@ import React,{useState} from 'react';
 import { Input,Select,Space,DatePicker,Switch,Button } from 'antd';
 import type { DatePickerProps, RangePickerProps } from 'antd/es/date-picker';
 import './InpuTodoList.css';
+import { v4 as uuidv4 } from 'uuid';
+import { addReminder } from '../../../store/modules/todoStore';
+import {useAppDispatch } from '../../../app/hooks'
+
 
 
 function InputTodo(){
+    //const [todoList] = useAppSelector(state => state.todoMvcReducer);
+    const dispatch = useAppDispatch()
     const [newReminder,setNewReminder] = useState("");
-    const [newTime,setNewTime] = useState(new Date());
+    const [newTime,setNewTime] = useState("");
     const [newChecked,setNewChecked] = useState(false);
     const [newType, setNewType] = useState("Type");
     const options = [
@@ -31,14 +37,12 @@ function InputTodo(){
         dateString: [string, string] | string,
       ) => {
         const tmpDate : string = dateString as string;
-        const currentDate : Date = new Date(tmpDate);
-        setNewTime(currentDate);
+        setNewTime(tmpDate);
       };
       
     const dateOnOk = (value: DatePickerProps['value'] | RangePickerProps['value']) => {
         const tmpDate : string = value?.toString() as string;
-        const currentDate : Date = new Date(tmpDate);
-        setNewTime(currentDate);
+        setNewTime(tmpDate);
     };
 
     // reminder input on change
@@ -55,13 +59,17 @@ function InputTodo(){
     } 
 
     const submitNewReminder = () => {
+        const id = uuidv4();
        const newInfo = {
+            id : id,
+            key : id,
             time : newTime,
             type : newType,
             content : newReminder,
-            checked : newChecked
+            checked : newChecked,
+            state : 1
        }
-       console.log(newInfo);
+       dispatch(addReminder(newInfo));
     }
     return (
         <div className='container'>
@@ -72,7 +80,7 @@ function InputTodo(){
             <div className='info-box-second-line'>
                 <DatePicker showTime onChange={dateOnChange} onOk={dateOnOk} />
                 <div className='email-reminder-box'>
-                    <div style={{marginRight : 30}}>Email reminder?</div>
+                    <div style={{marginRight : 20}}>Email reminder?</div>
                     <Switch onChange={switchOnChange} />
                 </div>
             </div>
