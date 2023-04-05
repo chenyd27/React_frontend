@@ -22,12 +22,25 @@ const todoMvc = createSlice({
     reducers : {
         addReminder (state : RootState,action : PayloadAction<reminderType>) : void{
             state.todoList.push(action.payload);
-        }
+        },
+        deleteSingleReminder(state : RootState, action : PayloadAction<reminderType>) : void {
+            const singlereminder : reminderType = action.payload;
+            const updateList = state.todoList.filter((item : reminderType) => item.id !== singlereminder.id);
+            state.todoList = updateList;
+        },
+        changeChecked(state : RootState, action : PayloadAction<reminderType>) : void {
+            const singlereminder : reminderType = action.payload;
+            const updateList = state.todoList.map((item : reminderType) => {
+                if(item.id === singlereminder.id) return {...item,checked : !item.checked};
+                return item;
+            });
+            state.todoList = updateList;
+        },
     }
 })
 
-const {addReminder} = todoMvc.actions;
+const {addReminder, deleteSingleReminder, changeChecked} = todoMvc.actions;
 const todoMvcReducer = todoMvc.reducer;
 export const todoList = (state: RootState) => state.todoMvc.todoList;
-export {addReminder};
+export {addReminder, deleteSingleReminder, changeChecked};
 export default todoMvcReducer;

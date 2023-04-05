@@ -5,7 +5,7 @@ import TodoContent from './todoContent/todoContent';
 function TodoList(){
     return (
         <div>
-            <div style={{width : "600px", borderRight : "gray solid 1px", height : "100vh"}}>
+            <div style={{width : "800px", borderRight : "gray solid 1px", height : "100vh"}}>
                 <InputTodo/>
                 <div style={{marginTop : 30, textAlign : "center"}}>
                     <TodoContent/>
