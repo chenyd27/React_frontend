@@ -60,16 +60,23 @@ function InputTodo(){
 
     const submitNewReminder = () => {
         const id = uuidv4();
-       const newInfo = {
-            id : id,
-            key : id,
-            time : newTime,
-            type : newType,
-            content : newReminder,
-            checked : newChecked,
-            state : 1
-       }
-       dispatch(addReminder(newInfo));
+        if(newTime === "" || newReminder === ""){
+            if(newReminder === "") window.alert("You miss the content");
+            else window.alert("You miss the reminder time");
+        }else{
+            const newInfo = {
+                id : id,
+                key : id,
+                time : newTime,
+                type : newType,
+                content : newReminder,
+                checked : newChecked,
+                state : 1
+            }
+            dispatch(addReminder(newInfo));
+            setNewType("Type");
+            setNewReminder("");
+        }
     }
     return (
         <div className='container'>
