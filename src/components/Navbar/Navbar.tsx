@@ -76,7 +76,7 @@ const Navbar: React.FC = () => {
   //setSelected(localStorage.getItem('selectedKey') !== null ? localStorage.getItem('selectedKey') as string : "1");
   return (
     <div className='menu-box'>
-      <div style={{width : 256}}>
+      <div style={{width : "100%"}}>
       <Menu
         selectedKeys={[selected]}
         selectable={true}

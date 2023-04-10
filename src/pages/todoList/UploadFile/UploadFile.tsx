@@ -28,19 +28,24 @@ function UploadFile(){
         reader.readAsText(file);
       };
     const uploadDoc = () => {
-        const content : string[] = fileContent.split(',');
-        console.log(content[0]);
-        const id = uuidv4();
-        const newContent : reminderType = {
-            id : id,
-            key : id,
-            time : new Date().toString(),
-            type : content[1],
-            content : content[0],
-            checked : content[2] === 'yes' ? true : false,
-            state : 1
+        if(fileContent === '') window.alert("You should upload a file");
+        else{
+            const content : string[] = fileContent.split('\n');
+            content.map(item => {
+                let newReminderList : string[] = item.split(',');
+                let id = uuidv4();
+                const newContent : reminderType = {
+                    id : id,
+                    key : id,
+                    time : new Date().toString(),
+                    type : newReminderList[1],
+                    content : newReminderList[0],
+                    checked : newReminderList[2] === 'yes' ? true : false,
+                    state : 1
+                }
+                dispatch(addReminder(newContent));
+            })
         }
-        dispatch(addReminder(newContent));
     }
     return (
         <div>

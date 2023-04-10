@@ -15,7 +15,7 @@ function Layout() : any{
   return (<div style={{display : 'flex'}}>
       <Navbar/>
       {/** 二级路由出口 */}
-      <div style={{marginLeft : '20px'}}>
+      <div style={{marginLeft : '5%',width : "75%"}}>
         <Outlet/>
       </div>
   </div>)
@@ -23,7 +23,7 @@ function Layout() : any{
 
 function App() {
   return (
-    <div className='App'>
+    <div style={{display : 'flex',width : "100%"}}>
         <Router>
           <Routes>
               <Route path='/' element={<Layout/>}>

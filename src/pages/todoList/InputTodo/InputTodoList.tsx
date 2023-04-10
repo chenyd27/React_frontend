@@ -82,7 +82,7 @@ function InputTodo(){
         <div className='container'>
             <Space.Compact style={{display : 'block',marginBottom : 15}}>
                 <Select options={options} style={{width : 120}} value={newType} onChange={selectOnChange}/>
-                <Input placeholder='Input your reminder' style={{width : 400}} value={newReminder} onChange={(e)=>reminderHandler(e)}/> 
+                <Input placeholder='Input your reminder' style={{width : "70%"}} value={newReminder} onChange={(e)=>reminderHandler(e)}/> 
             </Space.Compact>
             <div className='info-box-second-line'>
                 <DatePicker showTime onChange={dateOnChange} onOk={dateOnOk} />

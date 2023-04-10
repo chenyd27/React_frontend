@@ -6,8 +6,8 @@ import UploadFile from './UploadFile/UploadFile';
 
 function TodoList(){
     return (
-        <div style={{display : "flex"}}>
-            <div style={{width : "700px", borderRight : "gray solid 1px", height : "100vh"}}>
+        <div style={{display : "flex",width:"1000px",justifyContent:"space-between"}}>
+            <div style={{height : "100vh",width : "60%"}}>
                 <InputTodo/>
                 <div style={{marginTop : 30, textAlign : "center"}}>
                     <TodoContent/>
@@ -16,7 +16,7 @@ function TodoList(){
                     <UploadFile/>
                 </div>
             </div>
-            <div>
+            <div style={{height : "100vh",width : "40%"}}>
                 <HistoryContent/>
             </div>
         </div>
